@@ -1,0 +1,29 @@
+<% include ./partials/header.ejs %>
+<div class="w-full h-screen bg-zinc-300 flex item-center justify-center py-20 bg-[url('./images/board-2.png')] bg-cover">
+    <div class="w-[30vw] md:w-70 sm:w-100 px-20 py-5 rounded-md bg-white bg-center bg-cover shadow-2xl">
+      <div class="mx-5 flex flex-col">
+        <img src="/images/uploads/<%= user.profileImage %>" class="w-56 h-56 mx-5 mb-3 bg-blue-300 rounded-full object-cover border-4" alt="pin logo"/>
+        <button id="editbtn" class="text-red-600">Change profile Image</button>
+        <form action="/update" method="post" hidden enctype="multipart/form-data" id="uploadform">
+            <input type="file" name="image">
+        </form>
+      </div>
+      <form action="/update" method="post">
+        <input class="block mt-5 w-full px-3 py-2 border-2 rounded-md" type="text" name="name" placeholder="name" value="<%= user.name %>">
+        <input class="block mt-3 w-full px-3 py-2 border-2 rounded-md" type="text" name="username" placeholder="username" value="<%= user.username %>">
+        <input class="block mt-3 w-full px-3 py-2 border-2 rounded-full bg-red-600 text-white" type="submit" value="Update">
+      </form>
+    </div>
+  </div>
+<% include ./partials/footer.ejs %>
+<script>
+    document.querySelector('#editbtn').addEventListener("click", function(){
+        document.querySelector("#uploadform input").click();
+    })
+
+    document.querySelector("#uploadform input").addEventListener("change", function(){
+        document.querySelector("#uploadform").submit();
+    })
+
+    
+</script>

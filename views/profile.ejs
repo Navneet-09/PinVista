@@ -1,0 +1,53 @@
+<% include ./partials/header.ejs %>
+<div class="profile w-full min-h-screen bg-zinc-300 items-center">
+    <!-- <form action="/fileupload" hidden>
+        <input type="file" name="image">
+    </form> -->
+    <div class="profiledets w-full flex flex-row items-center bg-blue-100 px-96 py-5 w-50 gap-28 bg-gradient-to-tl from-red-400 to-orange-200">
+        <div class="w-56 h-56 bg-zinc-200 rounded-full relative flex-col shadow-2xl hover:shadow-xl mx-100 border-solid border-4 border-red-600">
+            <img src="/images/uploads/<%= user.profileImage %>" alt="" class="w-full h-full object-cover rounded-full">
+        </div>
+        <!-- <a id="uploadicon" class="w-full mt-5 mb-3 text-xs text-red-500">Update Image</a> -->
+        <div class="flex flex-col items-center">
+            <h1 class="text-4xl font-semibold mt-5 text-black"><%= user.name %></h1>
+            <h3 class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-3xl">@<%= user.username %></h3>
+            <div class="w-full flex flex-col items-center">
+                <a href="/edit" class="w-full px-10 py-2 bg-zinc-500 rounded-full mt-5 mb-3 text-white">EDIT PROFILE DETAILS</a>
+                <a href="/add" class="px-7 py-3 font-semibold bg-gradient-to-r from-orange-400 to-red-500 hover:from-pink-500 hover:to-yellow-500 text-sm text-white rounded-full"><i class="ri-add-fill"></i> CREATE NEW POST</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gradient-to-tr from-orange-50 to-amber-50 flex flex-col mt-1 gap-5">
+        <div class="bg-gradient-to-tr from-orange-50 to-amber-50 flex flex-row mt-5 gap-10 px-10">
+            <h3 class="text-xl uppercase font-semibold text-red-800 border-b-4 border-red-800"><i class="ri-upload-2-fill"></i> Uploads</h3>
+            <a href="/savedposts" class="text-xl uppercase font-semibold"><i class="ri-bookmark-line"></i> Saved post</a>
+        </div>
+
+        
+    <div class="bg-gradient-to-tr from-orange-50 to-amber-50 flex flex-col mt-1">
+        <div class="px-10 mt-2">
+            <h3 class="mt-1 text-sm mb-1"><%= user.posts.length %> uploads by <span class="text-red-700 text-sm font-semibold">@<%= user.username %></span></h3>
+        </div>
+        <div class="cards flex flex-wrap gap-5 px-10 mt-1 bg-gradient-to-tr from-orange-50 to-amber-50 mb-5">
+            <% user.posts.reverse().forEach(function(elem){ %>
+            <div class="card w-56 bg-gradient-to-t from-orange-200 to-red-200 rounded-lg overflow-hidden text-black border shadow-xl mt-5 mb-5">
+                <div class="w-full h-48 bg-sky-200">
+                    <a href="/singlepost/:<%= elem.id %>">
+                        <img class="w-full h-full object-cover" src="/images/uploads/<%= elem.image %>" alt="">
+                    </a>
+                </div>
+                <h3 class="mt-2 text-xl px-2 font-sans font-bold"><%= elem.title.slice(0, 12) %></h3>
+                <p class="mb-2 px-2 font-sans"><%= elem.description.slice(0, 30) %>...<a class="text-red-500" href="/singlepost/:<%= elem.id %>">Read More</a></p>
+                <div class="icon flex flex-row-reverse w-full px-5 py-1 my-1">
+                    <a href="/delete/:<%= elem.id %>" class="text-xl hover:text-red-500"><i class="ri-delete-bin-2-fill"></i></a>
+                </div>
+            </div>
+            <% })%>
+        </div>
+    </div>
+
+    </div>
+
+</div>
+<% include ./partials/footer.ejs %>

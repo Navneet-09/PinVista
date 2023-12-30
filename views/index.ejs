@@ -1,0 +1,25 @@
+<% include ./partials/header.ejs %>
+    <div class="w-full h-screen flex item-center justify-center py-20 bg-[url('./images/pinterest-board.jpg')]">
+      <div class="w-[30vw] md:w-70 sm:w-100 px-20 py-5 rounded-md bg-white bg-center bg-cover shadow-2xl">
+        <div class="mx-10">
+          <img src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" class="w-10 h-10 mx-20 mb-3" alt="pin logo" class="img1" />
+        </div>
+        <h1 class="text-3xl leading-none tracking-tighter capitalize text-center font-semibold text-zinc-700">Welcome to pinterest</h1>
+        <% if(error.length>0){ %>
+          <p class="mb-5 mt-5 text-red-400 text-sm"><%=error%></p>
+          <%}%>
+        <form action="/login" method="post">
+          <input class="block mt-5 w-full px-3 py-2 border-2 rounded-md" type="text" name="username" placeholder="username">
+          <input class="block mt-3 w-full px-3 py-2 border-2 rounded-md" type="password" name="password" placeholder="password">
+          <input class="block mt-3 w-full px-3 py-2 border-2 rounded-full bg-red-600 text-white" type="submit" value="Login">
+          <a href="#" class="mt-5 inline-block font-semibold text-zinc-500">Forgot password?</a>
+          <p class="text-xs font-semibold text-zinc-700 mt-10 text-center w-3/4 mx-auto">
+            By continuing, you agree to Pinterest's
+          <b>Terms of Service, Privacy policy.</b>
+          </p>
+        </form>
+        <a href="/register" class="inline-block mt-7 text-sm w-full font-semibold text-zinc-700 text-center">Don't have Account ? <span class="hover:text-red-600">SignUp</span></a>
+      </div>
+    </div>
+<% include ./partials/footer.ejs %>
+  

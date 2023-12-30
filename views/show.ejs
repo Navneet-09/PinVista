@@ -1,0 +1,22 @@
+<% include ./partials/header.ejs %>
+<div class="w-full min-h-screen px-10 py-8 text-black bg-gradient-to-tl from-orange-100 to-red-200">
+    <h3 class="mt-2 text-2xl mb-2 font-semibold"><i class="ri-bookmark-fill"></i> Saved posts by <span class="text-red-500 text-xl font-bold">@<%= user.username %></span></h3>
+    <br />
+    <div class="cards flex flex-wrap gap-7">
+        <% if((user.savedPosts.length)===0){%>
+            <h3 class="mt-2 text-lg mb-1">0 posts saved by <span class="text-red-700 text-2xl font-semibold">@<%= user.username %></span></h3>
+        <%}%>
+        <% user.savedPosts.forEach(function(elem){ %>
+        <div class="card w-60 bg-zinc-300 rounded-lg overflow-hidden text-black border shadow-xl">
+            <div class="w-full h-60 bg-sky-200">
+                <a href="/singlepost/:<%= elem.id %>">
+                    <img class="w-full h-full object-cover" src="/images/uploads/<%= elem.image %>" alt="">
+                </a>
+            </div>
+            <h3 class="mt-2 text-xl px-2"><%= elem.title.slice(0, 12) %></h3>
+            <p class="mb-2 px-2"><%= elem.description.slice(0, 30) %>.. <span class="text-red-500">Read More</span></p>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<% include ./partials/footer.ejs %>

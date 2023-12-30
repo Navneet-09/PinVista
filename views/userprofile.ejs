@@ -1,0 +1,39 @@
+<% include ./partials/header.ejs %>
+<div class="profile w-full min-h-screen bg-zinc-300 items-center">
+    <!-- <form action="/fileupload" hidden>
+        <input type="file" name="image">
+    </form> -->
+    <div class="profiledets w-full flex flex-row items-center bg-blue-100 px-96 py-5 w-50 gap-28 bg-gradient-to-tl from-red-400 to-orange-100">
+        <div class="w-56 h-56 bg-zinc-200 rounded-full relative flex-col shadow-2xl hover:shadow-xl mx-100 border-solid border-4 border-red-600">
+            <img src="/images/uploads/<%= user.profileImage %>" alt="" class="w-full h-full object-cover rounded-full">
+        </div>
+        <!-- <a id="uploadicon" class="w-full mt-5 mb-3 text-xs text-red-500">Update Image</a> -->
+        <div class="flex flex-col items-center">
+            <h1 class="text-4xl font-semibold mt-5 text-black"><%= user.name %></h1>
+            <h3 class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-3xl">@<%= user.username %></h3>
+            <div class="w-full flex flex-col items-center mt-5">
+                <!-- <a href="#" class="px-10 py-2 font-semibold bg-gradient-to-r from-orange-400 to-red-500 hover:from-pink-500 hover:to-yellow-500 text-xs text-white rounded-full">+ Follow</a> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gradient-to-tr from-orange-50 to-amber-50 flex flex-col mt-1">
+        <div class="px-10 mt-5">
+            <h3 class="mt-2 text-xl mb-2"><%= user.posts.length %> Posts by <span class="text-red-700 text-2xl font-bold">@<%= user.username %></span></h3>
+        </div>
+        <div class="cards flex flex-wrap gap-5 px-10 mt-3 bg-gradient-to-tr from-orange-50 to-amber-50 mb-5">
+            <% user.posts.forEach(function(elem){ %>
+            <div class="card w-56 bg-gradient-to-t from-orange-200 to-red-200 rounded-lg overflow-hidden text-black border shadow-xl mt-5 mb-5">
+                <div class="w-full h-48 bg-sky-200">
+                    <a href="/singlepost/:<%= elem.id %>">
+                        <img class="w-full h-full object-cover" src="/images/uploads/<%= elem.image %>" alt="">
+                    </a>
+                </div>
+                <h3 class="mt-2 text-xl px-2 font-sans font-bold"><%= elem.title.slice(0, 12) %></h3>
+                <p class="mb-2 px-2 font-sans"><%= elem.description.slice(0, 30) %>...<a class="text-red-500" href="/singlepost/:<%= elem.id %>">Read More</a></p>
+            </div>
+            <% })%>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer.ejs %>
